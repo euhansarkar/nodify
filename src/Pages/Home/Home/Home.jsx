@@ -20,13 +20,14 @@ const Home = () => {
           <Profile />
         </div>
         <div className="col-span-6">
-
-        <NewPost />
+          <NewPost />
         </div>
-        <Events />
+        <div className="col-span-3">
+          <Events />
+        </div>
       </div>
       <RightSideBar />
-     </div>
+    </div>
   );
 };
 

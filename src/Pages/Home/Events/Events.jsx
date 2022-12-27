@@ -1,9 +1,10 @@
 import React from 'react';
+import Contacts from '../Home/Contacts/Contacts';
 
 const Events = () => {
     return (
-        <div>
-            <h2>this is events page</h2>
+        <div className='p-3 bg-gray-300 rounded-md'>
+            <Contacts/>
         </div>
     );
 };
