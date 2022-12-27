@@ -6,10 +6,10 @@ import {BiStar} from "react-icons/bi"
 import {AiOutlineUsergroupAdd} from "react-icons/ai"
 import {TiWeatherPartlySunny} from 'react-icons/ti';
 import {CgGames} from 'react-icons/cg';
-const SideBar = () => {
+const RightSideBar = () => {
   return (
     <div
-      className="fixed top-16 left-0 h-screen w-16 flex flex-col
+      className="   fixed flex top-20 rounded-lg right-0 h-screen w-16 flex-col
                   bg-white dark:bg-gray-900 shadow-lg"
     >
       <SideBarIcon icon={<BsGrid size="32" />} />
@@ -37,4 +37,4 @@ const SideBarIcon = ({ icon, text = `tooltip` }) => (
 
 const Divider = () => <hr className="sidebar-hr" />;
 
-export default SideBar;
+export default RightSideBar;

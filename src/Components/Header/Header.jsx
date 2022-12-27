@@ -49,7 +49,7 @@ const navBar = (
 
 const leftNavBar = (
   <>
-    <li className="w-30">
+    <li className="w-30 z-10">
       <div>
         <BsFillGrid3X3GapFill className="text-3xl font-bold" />
       </div>
