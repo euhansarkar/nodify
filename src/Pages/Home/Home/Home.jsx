@@ -6,6 +6,7 @@ import NewPost from "../NewPost/NewPost";
 import Events from "../Events/Events";
 import SideBar from "./SideBar/SideBar";
 import SideBar2 from "./SideBar2/SideBar2";
+import ShowPosts from "./ShowPosts/ShowPosts";
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
         </div>
         <div className="col-span-6">
           <NewPost />
+          <ShowPosts/>
         </div>
         <div className="col-span-3">
           <Events />
