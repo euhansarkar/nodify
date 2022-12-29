@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Leanne Graham",
+    "username": null,
+    "email": "Sincere@april.biz",
+    "gender": "male",
+    "birthDay": "new Date()",
+    "address": {
+      "street": "Kulas Light",
+      "suite": "Apt. 556",
+      "city": "Gwenborough",
+      "isActive": true,
+      "about": "lorem ipsum dolor sit amet",
+      "zipcode": "92998-3874",
+      "tags": "good",
+      "geo": {
+        "lat": "-37.3159",
+        "lng": "81.1496"
+      }
+    },
+    "phone": null,
+    "website": "hildegard.org",
+    "company": {
+      "name": "Romaguera-Crona",
+      "catchPhrase": "Multi-layered client-server neural-net",
+      "bs": "harness real-time e-markets"
+    }
+  }
+]

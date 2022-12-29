@@ -7,17 +7,6 @@ import PostModal from "../PostModal/PostModal";
 const NewPost = () => {
   const { register, handleSubmit } = useForm();
 
-  const myPostModal = () => {
-    return (
-      <div>
-        <label htmlFor="postModal" className="btn">
-          open modal
-        </label>
-        {console.log(`clicked`)}
-      </div>
-    );
-  };
-
   return (
     <div className="bg-gray-200 rounded-md p-5">
       <form className="flex items-center justify-center flex-col">

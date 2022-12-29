@@ -2,22 +2,29 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Components/Contexts/AuthProvider/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
-  const { handleSubmit, register } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
+
   const { signInWithGoogle, createUser } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
 
   const handleSignUpForm = (data) => {
+    console.log(data);
     const { email, password } = data;
-    console.log(email, password);
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        saveToDataBase(data);
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
       });
   };
 
@@ -30,6 +37,33 @@ const SignUp = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const saveToDataBase = (data) => {
+    const { fName, lName, email, gender, birthDate } = data;
+    const user = {
+      username: null,
+      name: fName + lName,
+      userCreated: new Date(),
+      email,
+      gender,
+      birth_date: birthDate,
+      address: null,
+      phone: null,
+      website: null,
+      company: null,
+    };
+    console.log(user);
+
+    fetch(`http://localhost:5000/users`, {
+      method: `POST`,
+      headers: {
+        "Content-Type": `application/json`,
+      },
+      body: JSON.stringify(user),
+    })
+    .then(res => res.json())
+    .then(data => console.log(data));
   };
 
   return (
@@ -46,22 +80,32 @@ const SignUp = () => {
                 <span className="label-text">Your First Name</span>
               </label>
               <input
-                {...register(`fName`)}
+                {...register(`fName`, {
+                  required: `your first name is required!`,
+                })}
                 type="text"
                 placeholder="First Name"
                 className="input input-bordered w-full"
               />
+              {errors?.fName && (
+                <p className="text-red-400">{errors?.fName?.message}</p>
+              )}
             </div>
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text">Your Last Name</span>
               </label>
               <input
-                {...register(`lName`)}
+                {...register(`lName`, {
+                  required: `your last name is required!`,
+                })}
                 type="text"
                 placeholder="Last Name"
                 className="input input-bordered w-full"
               />
+              {errors?.lName && (
+                <p className="text-red-400">{errors?.lName?.message}</p>
+              )}
             </div>
           </div>
           <div className="form-control w-full">
@@ -69,32 +113,45 @@ const SignUp = () => {
               <span className="label-text">Your Email</span>
             </label>
             <input
-              {...register(`email`)}
+              {...register(`email`, { required: `your email is required!` })}
               type="email"
               placeholder="Your Email"
               className="input input-bordered w-full"
             />
+            {errors?.email && (
+              <p className="text-red-400">{errors?.email?.message}</p>
+            )}
           </div>
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Your Password</span>
             </label>
             <input
-              {...register(`password`)}
+              {...register(`password`, {
+                required: `your password is required!`,
+              })}
               type="password"
               placeholder="Your Password"
               className="input input-bordered w-full"
             />
+            {errors?.password && (
+              <p className="text-red-400">{errors?.password?.message}</p>
+            )}
           </div>
           <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Your Birth Day</span>
             </label>
             <input
-              {...register(`birthDate`)}
+              {...register(`birthDate`, {
+                required: `your birth day is required.`,
+              })}
               type="date"
               className="input input-bordered w-full"
             />
+            {errors?.birthDate && (
+              <p className="text-red-400">{errors?.birthDate?.message}</p>
+            )}
           </div>
           <div className="form-control w-full">
             <label className="label">
@@ -138,13 +195,24 @@ const SignUp = () => {
                 name="terms&condition"
                 value="terms"
               />
+
               <label htmlFor="terms&condition">
                 i agree with nodify terms and conditions.
               </label>
             </div>
           </div>
-          <input className="input input-bordered w-full my-4" type="submit" value="Sign Up" />
+          <input
+            className="input input-bordered w-full mt-4"
+            type="submit"
+            value="Sign Up"
+          />
         </form>
+        <h2 className="mb-4">
+          already have an account?{" "}
+          <Link className="text-sky-500" to={`/signin`}>
+            Sign In
+          </Link>
+        </h2>
         <div className="divider">OR</div>
         <div className="justify-center flex">
           <button
