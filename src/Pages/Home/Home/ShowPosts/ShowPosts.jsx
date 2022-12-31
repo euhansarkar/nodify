@@ -20,7 +20,7 @@ const ShowPosts = () => {
     <div>
       <div>
         {data?.data?.map((post) => (
-          <SinglePost post={post} key={post._id} ></SinglePost>
+          <SinglePost post={post} key={post._id}></SinglePost>
         ))}
       </div>
     </div>

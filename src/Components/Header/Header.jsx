@@ -217,7 +217,7 @@ const Header = () => {
           </ul>
         </div>
         <div className="flex items-center justify-between gap-4">
-          <Link className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+          <Link className="btn btn-ghost normal-case text-xl">Nodify</Link>
           <div className="form-control">
             <input
               type="text"

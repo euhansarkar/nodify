@@ -1,13 +1,9 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { FaVideo } from "react-icons/fa";
-import { IoMdPhotos } from "react-icons/io";
 import { BsEmojiSmile } from "react-icons/bs";
-import PostModal from "../PostModal/PostModal";
-import { IoIosImages } from "react-icons/io";
 import { FaUserTag } from "react-icons/fa";
+import { IoIosImages } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Components/Contexts/AuthProvider/AuthProvider";
 import "./NewPost";
 
@@ -15,8 +11,7 @@ const NewPost = () => {
   const { user } = useContext(AuthContext);
 
   const { handleSubmit, register } = useForm();
-  const imageUploadKey = '8fab73a19983cf600537a30569d42841';
-
+  const imageUploadKey = "8fab73a19983cf600537a30569d42841";
 
   const handlePost = (data) => {
     const { post, img } = data;
@@ -28,34 +23,32 @@ const NewPost = () => {
       method: `POST`,
       body: formData,
     })
-    .then(res => res.json())
-    .then(imgData => {
-      if(imgData.success){
-        console.log(imgData.data.url);
-        const uploadedImage = imgData.data.url;
-        
-        const newPost = {
-          poster: user?.email,
-          message: post,
-          img: uploadedImage,
-          posted_time: new Date(),
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          console.log(imgData.data.url);
+          const uploadedImage = imgData.data.url;
+
+          const newPost = {
+            poster: user?.email,
+            message: post,
+            img: uploadedImage,
+            posted_time: new Date(),
+          };
+
+          fetch(`http://localhost:5000/posts`, {
+            method: `POST`,
+            headers: {
+              "Content-Type": `application/json`,
+            },
+            body: JSON.stringify(newPost),
+          })
+            .then((res) => res.json())
+            .then((postData) => {
+              console.log(postData);
+            });
         }
-
-        fetch(`http://localhost:5000/posts`, {
-          method: `POST`,
-          headers: {
-            "Content-Type": `application/json`,
-          },
-          body: JSON.stringify(newPost)
-        })
-        .then(res => res.json())
-        .then(postData => {
-          console.log(postData);
-        })
-
-
-      }
-    })
+      });
   };
 
   return (

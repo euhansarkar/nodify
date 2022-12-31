@@ -1,8 +1,8 @@
+import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../../Components/Contexts/AuthProvider/AuthProvider";
-import { GoogleAuthProvider } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Components/Contexts/AuthProvider/AuthProvider";
 
 const SignUp = () => {
   const {
@@ -62,8 +62,8 @@ const SignUp = () => {
       },
       body: JSON.stringify(user),
     })
-    .then(res => res.json())
-    .then(data => console.log(data));
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
 
   return (

@@ -14,9 +14,9 @@ const Home = () => {
     //   {/* <SideBar /> */}
 
     // </div>
-    <div className="flex">
+    <div className="flex gap-6">
       <LeftSideBar />
-      <div className="container gap-3 grid grid-cols-12 w-[1200px] mx-auto my-3">
+      <div className="container gap-6 grid grid-cols-12 w-[1200px] mx-auto my-3">
         <div className="col-span-3">
           <Profile />
         </div>
@@ -28,7 +28,6 @@ const Home = () => {
           <Events />
         </div>
       </div>
-      <RightSideBar />
     </div>
   );
 };
